@@ -1,15 +1,16 @@
 <!doctype html>
 <html class="js" lang="{{ request.locale.iso_code }}">
   <head>
- {%- render 'ecom_header' -%}
-<!-- BEAE-GLOBAL-FONT --> 
-{% capture the_snippet_global_font %}{% include 'beae-global-font' %}{% endcapture %} {% unless the_snippet_global_font contains 'Liquid error' %} {{ the_snippet_global_font }} {% endunless %} 
- <!-- END BEAE-GLOBAL-FONT -->
-<!-- BEAE-HEADER --> 
-{%- if content_for_layout contains 'beae-builder' or request.design_mode -%}
-{%- render 'beae_header' -%}
-{%- endif -%}
-<!-- END BEAE-HEADER -->
+    {%- render 'ecom_header' -%}
+    <!-- BEAE-GLOBAL-FONT -->
+    {% capture the_snippet_global_font %}{% include 'beae-global-font' %}{% endcapture %}
+    {% unless the_snippet_global_font contains 'Liquid error' %} {{ the_snippet_global_font }} {% endunless %}
+    <!-- END BEAE-GLOBAL-FONT -->
+    <!-- BEAE-HEADER -->
+    {%- if content_for_layout contains 'beae-builder' or request.design_mode -%}
+      {%- render 'beae_header' -%}
+    {%- endif -%}
+    <!-- END BEAE-HEADER -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -305,11 +306,11 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
-  {%- render 'foxify-head' -%}{% capture the_snippet_beae-global-theme-setting %}{% include 'beae-global-theme-setting' %}{% endcapture %}
-            {% unless the_snippet_beae-global-theme-setting contains 'Liquid error' %}
-                {{ the_snippet_beae-global-theme-setting }}
-            {% endunless %}
-</head>
+    {% capture the_snippet_beae-global-theme-setting %}{% include 'beae-global-theme-setting' %}{% endcapture %}
+    {% unless the_snippet_beae-global-theme-setting contains 'Liquid error' %}
+      {{ the_snippet_beae-global-theme-setting }}
+    {% endunless %}
+  </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
@@ -325,8 +326,6 @@
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
-
-    
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
@@ -385,16 +384,14 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-  
-<!-- BEAE-FOOTER --> 
-{%- if content_for_layout contains 'beae-builder' -%}
 
-{%- endif -%}
-<!-- END BEAE-FOOTER -->
-<!-- BEAE-ANALYTICS --> 
-{%- if content_for_layout contains 'beae-builder' -%}
-
-{%- endif -%}
-<!-- END BEAE-ANALYTICS -->
-</body>
+    <!-- BEAE-FOOTER -->
+    {%- if content_for_layout contains 'beae-builder' -%}
+    {%- endif -%}
+    <!-- END BEAE-FOOTER -->
+    <!-- BEAE-ANALYTICS -->
+    {%- if content_for_layout contains 'beae-builder' -%}
+    {%- endif -%}
+    <!-- END BEAE-ANALYTICS -->
+  </body>
 </html>
