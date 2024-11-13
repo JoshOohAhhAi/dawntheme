@@ -387,7 +387,7 @@
         countrySelectorSearchCount: `{{ 'localization.country_results_count' | t: count: '[count]' }}`,
       };
     </script>
-
+-%} <script> document.querySelectorAll('.mega-menu__link').forEach(link => { link.addEventListener('focus', () => { link.closest('.mega-menu__item').classList.add('focused'); }); link.addEventListener('blur', () => { link.closest('.mega-menu__item').classList.remove('focused'); }); }); </script>
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
