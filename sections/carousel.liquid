@@ -1,5 +1,5 @@
-
-<!-- templates/sections/image-carousel.liquid -->
+<!-- sections/image-carousel.liquid -->
+{{ 'carousel.css' | asset_url | stylesheet_tag }}
 <div class="carousel">
     <div class="carousel-control-button left"><input type="radio" name="carousel-control-input"></div>
     <div class="carousel-control-button right"><input type="radio" name="carousel-control-input" checked></div>
@@ -7,12 +7,54 @@
     <div class="carousel-rotation-direction">
         <ul class="carousel-item-wrapper" style="--_num-elements: {{ section.settings.num_slides }}">
             {% for block in section.blocks %}
-                <li class="carousel-item" style="--_index: {{ forloop.index }}; --_image-url: url('{{ block.settings.image | img_url: '2048x2048' }}')">
-                    <a href="{{ block.settings.link }}" target="_blank">{{ block.settings.description }}</a>
-                </li>
+            <li class="carousel-item" style="--_index: {{ forloop.index }}; --_image-url: url('{{ block.settings.image | img_url: '2048x2048' }}')">
+                <a href="{{ block.settings.link }}" target="_blank">{{ block.settings.description }}</a>
+            </li>
             {% endfor %}
             <li class="carousel-ground"></li>
         </ul>
     </div>
 </div>
 
+{% schema %}
+{
+    "name": "3D Image Carousel",
+    "settings": [
+        {
+            "type": "number",
+            "id": "num_slides",
+            "label": "Number of slides",
+            "default": 10
+        }
+    ],
+    "blocks": [
+        {
+            "type": "slide",
+            "name": "Slide",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Slide image"
+                },
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": "Image link"
+                },
+                {
+                    "type": "text",
+                    "id": "description",
+                    "label": "Description"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Custom Image Carousel",
+            "category": "Image"
+        }
+    ]
+}
+{% endschema %}
