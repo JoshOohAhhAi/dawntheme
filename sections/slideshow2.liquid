@@ -1,6 +1,8 @@
 {{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
+{{ 'component-buttons.css' | asset_url | stylesheet_tag }}
+{{ 'component-animation.css' | asset_url | stylesheet_tag }}
 
 {%- if section.settings.slide_height == 'adapt_image' and section.blocks.first.settings.image != blank -%}
   {%- style -%}
@@ -39,6 +41,7 @@
         name="previous"
         aria-label="{{ 'sections.slideshow.previous_slideshow' | t }}"
         aria-controls="Slider-{{ section.id }}"
+        role="button"
       >
         <span class="svg-wrapper">
           {{- 'icon-caret.svg' | inline_asset_content -}}
@@ -57,6 +60,7 @@
                 class="slider-counter__link slider-counter__link--{{ section.settings.slider_visual }} link"
                 aria-label="{{ 'sections.slideshow.load_slide' | t }} {{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
                 aria-controls="Slider-{{ section.id }}"
+                role="button"
               >
                 {%- if section.settings.slider_visual == 'numbers' -%}
                   {{ forloop.index -}}
@@ -74,6 +78,7 @@
         name="next"
         aria-label="{{ 'sections.slideshow.next_slideshow' | t }}"
         aria-controls="Slider-{{ section.id }}"
+        role="button"
       >
         <span class="svg-wrapper">
           {{- 'icon-caret.svg' | inline_asset_content -}}
@@ -85,6 +90,7 @@
           type="button"
           class="slideshow__autoplay slider-button{% if section.settings.auto_rotate == false %} slideshow__autoplay--paused{% endif %}"
           aria-label="{{ 'sections.slideshow.pause_slideshow' | t }}"
+          role="button"
         >
           <span class="svg-wrapper">
             {{- 'icon-pause.svg' | inline_asset_content -}}
@@ -150,12 +156,7 @@
               }}
             {%- endif -%}
           {%- else -%}
-            {%- assign placeholder_slide = forloop.index | modulo: 2 -%}
-            {%- if placeholder_slide == 1 -%}
-              {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
-            {%- else -%}
-              {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-            {%- endif -%}
+            {{ 'placeholder-image.svg' | inline_asset_content }}
           {%- endif -%}
         </div>
         <div class="slideshow__text-wrapper banner__content banner__content--{{ block.settings.box_align }} page-width{% if block.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll and forloop.index == 1 %} scroll-trigger animate--slide-in{% endif %}">
@@ -198,6 +199,7 @@
         name="previous"
         aria-label="{{ 'sections.slideshow.previous_slideshow' | t }}"
         aria-controls="Slider-{{ section.id }}"
+        role="button"
       >
         <span class="svg-wrapper">
           {{- 'icon-caret.svg' | inline_asset_content -}}
@@ -216,6 +218,7 @@
                 class="slider-counter__link slider-counter__link--{{ section.settings.slider_visual }} link"
                 aria-label="{{ 'sections.slideshow.load_slide' | t }} {{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
                 aria-controls="Slider-{{ section.id }}"
+                role="button"
               >
                 {%- if section.settings.slider_visual == 'numbers' -%}
                   {{ forloop.index -}}
@@ -233,6 +236,7 @@
         name="next"
         aria-label="{{ 'sections.slideshow.next_slideshow' | t }}"
         aria-controls="Slider-{{ section.id }}"
+        role="button"
       >
         <span class="svg-wrapper">
           {{- 'icon-caret.svg' | inline_asset_content -}}
@@ -244,6 +248,7 @@
           type="button"
           class="slideshow__autoplay slider-button{% if section.settings.auto_rotate == false %} slideshow__autoplay--paused{% endif %}"
           aria-label="{{ 'sections.slideshow.pause_slideshow' | t }}"
+          role="button"
         >
           <span class="svg-wrapper">
             {{- 'icon-pause.svg' | inline_asset_content -}}
@@ -260,6 +265,22 @@
 {%- if request.design_mode -%}
   <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const autoplayButton = document.querySelector(".slideshow__autoplay");
+
+    autoplayButton.addEventListener("click", function () {
+      if (autoplayButton.classList.contains("slideshow__autoplay--paused")) {
+        autoplayButton.classList.remove("slideshow__autoplay--paused");
+        // Code to start autoplay
+      } else {
+        autoplayButton.classList.add("slideshow__autoplay--paused");
+        // Code to pause autoplay
+      }
+    });
+  });
+</script>
 
 {% schema %}
 {
