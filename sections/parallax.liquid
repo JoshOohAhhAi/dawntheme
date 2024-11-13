@@ -1,393 +1,255 @@
+{{ 'video-section.css' | asset_url | stylesheet_tag }}
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign video_id = section.settings.video.id | default: section.settings.video_url.id
+  assign video_alt = section.settings.video.alt | default: section.settings.description
+  assign alt = 'sections.video.load_video' | t: description: video_alt | escape
+  assign poster = section.settings.video.preview_image | default: section.settings.cover_image
+
+  if section.settings.video != null
+    assign ratio_diff = section.settings.video.aspect_ratio | minus: poster.aspect_ratio | abs
+    if ratio_diff < 0.01 and ratio_diff > 0
+      assign fix_ratio = true
+    endif
+  endif
+-%}
+
+{%- capture sizes -%}
+  {% if section.settings.full_width -%}
+    100vw
+  {%- else -%}
+    (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px)
+    calc(100vw - 10rem), 100vw
+  {%- endif %}
+{%- endcapture -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="video-section isolate{% unless section.settings.full_width %} page-width{% endunless %} section-{{ section.id }}-padding">
+    <div
+      {% if section.settings.full_width %}
+        class="page-width"
+      {% endif %}
+    >
+      {%- unless section.settings.heading == blank -%}
+        <div class="title-wrapper title-wrapper--no-top-margin{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          <h2 class="title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+        </div>
+      {%- endunless -%}
+    </div>
+    <deferred-media
+      class="video-section__media deferred-media gradient global-media-settings{% if section.settings.full_width %} global-media-settings--full-width{% endif %}{% if fix_ratio %} media-fit-cover{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+      data-media-id="{{ video_id }}"
+      {% if poster != null %}
+        style="--ratio-percent: {{ 1 | divided_by: poster.aspect_ratio | times: 100 }}%;"
+      {% endif %}
+    >
+      <button
+        id="Deferred-Poster-Modal-{{ video_id }}"
+        class="video-section__poster media deferred-media__poster media--landscape"
+        type="button"
+        aria-label="{{ alt }}"
+      >
+        {%- if poster != null -%}
+          {{
+            poster
+            | image_url: width: 3840
+            | image_tag: sizes: sizes, widths: '375, 750, 1100, 1500, 1780, 2000, 3000, 3840', alt: alt
+          }}
+        {%- else -%}
+          {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+        {%- endif -%}
+        <span class="deferred-media__poster-button motion-reduce">
+          <span class="svg-wrapper">
+            {{- 'icon-play.svg' | inline_asset_content -}}
+          </span>
+        </span>
+      </button>
+      <template>
+        {%- if section.settings.video == null and section.settings.video_url != null -%}
+          {%- liquid
+            assign loop = ''
+            if section.settings.enable_video_looping
+              assign loop = '&loop=1&playlist=' | append: video_id
+            endif
+          -%}
+          {%- if section.settings.video_url.type == 'youtube' -%}
+            <iframe
+              src="https://www.youtube.com/embed/{{ video_id }}?enablejsapi=1&autoplay=1{{ loop }}"
+              class="js-youtube"
+              allow="autoplay; encrypted-media"
+              allowfullscreen
+              title="{{ section.settings.description | escape }}"
+            ></iframe>
+          {%- else -%}
+            <iframe
+              src="https://player.vimeo.com/video/{{ video_id }}?autoplay=1{{ loop }}"
+              class="js-vimeo"
+              allow="autoplay; encrypted-media"
+              allowfullscreen
+              title="{{ section.settings.description | escape }}"
+            ></iframe>
+          {%- endif -%}
+        {%- else -%}
+          {{
+            section.settings.video
+            | video_tag:
+              image_size: '1100x',
+              autoplay: true,
+              loop: section.settings.enable_video_looping,
+              controls: true,
+              muted: false
+          }}
+        {%- endif -%}
+      </template>
+    </deferred-media>
+  </div>
+</div>
+
 {% schema %}
 {
-  "name": "Parallax Section",
+  "name": "t:sections.video.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
   "settings": [
     {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "t:sections.video.settings.heading.default",
+      "label": "t:sections.video.settings.heading.label"
+    },
+    {
       "type": "select",
-      "id": "media_type",
-      "label": "Media Type",
+      "id": "heading_size",
       "options": [
-        { "value": "image", "label": "Image" },
-        { "value": "video", "label": "Video" },
-        { "value": "youtube", "label": "YouTube Video" }
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "hxl",
+          "label": "t:sections.all.heading_size.options__4.label"
+        },
+        {
+          "value": "hxxl",
+          "label": "t:sections.all.heading_size.options__5.label"
+        }
       ],
-      "default": "image"
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_looping",
+      "label": "t:sections.video.settings.enable_video_looping.label",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:sections.video.settings.header__1.content"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "t:sections.video.settings.video.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.video.settings.header__2.content"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.video.settings.paragraph.content"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "accept": ["youtube", "vimeo"],
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+      "label": "t:sections.video.settings.video_url.label",
+      "info": "t:sections.video.settings.video_url.info"
     },
     {
       "type": "image_picker",
-      "id": "background_image",
-      "label": "Background Image",
-      "info": "Select an image if 'Image' is chosen as the media type"
-    },
-    {
-      "type": "url",
-      "id": "background_video",
-      "label": "Background Video URL",
-      "info": "Enter a video URL if 'Video' is chosen as the media type (e.g., .mp4 link)"
-    },
-    {
-      "type": "url",
-      "id": "youtube_video_url",
-      "label": "YouTube Video URL",
-      "info": "Enter a YouTube URL if 'YouTube Video' is chosen as the media type"
-    },
-    {
-      "type": "checkbox",
-      "id": "video_autoplay",
-      "label": "Autoplay Video",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "video_loop",
-      "label": "Loop Video",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "video_muted",
-      "label": "Mute Video",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "video_controls",
-      "label": "Show Video Controls",
-      "default": false
-    },
-    {
-      "type": "color",
-      "id": "overlay_color",
-      "label": "Overlay Color",
-      "default": "#000000"
-    },
-    {
-      "type": "checkbox",
-      "id": "gradient_overlay",
-      "label": "Enable Gradient Overlay",
-      "default": false
-    },
-    {
-      "type": "color",
-      "id": "gradient_overlay_color_1",
-      "label": "Gradient Color 1",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "gradient_overlay_color_2",
-      "label": "Gradient Color 2",
-      "default": "#000000"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_parallax",
-      "label": "Enable Parallax Effect",
-      "default": true
-    },
-    {
-      "type": "range",
-      "id": "parallax_speed",
-      "label": "Parallax Scrolling Speed",
-      "min": 1,
-      "max": 10,
-      "default": 5
-    },
-    {
-      "type": "range",
-      "id": "overlay_opacity",
-      "label": "Overlay Opacity",
-      "min": 0,
-      "max": 100,
-      "default": 30,
-      "unit": "%"
-    },
-    {
-      "type": "checkbox",
-      "id": "sticky_position",
-      "label": "Enable Sticky Position",
-      "default": false
+      "id": "cover_image",
+      "label": "t:sections.video.settings.cover_image.label"
     },
     {
       "type": "text",
-      "id": "heading",
-      "label": "Heading Text",
-      "default": "Your Heading Here"
+      "id": "description",
+      "label": "t:sections.video.settings.description.label",
+      "info": "t:sections.video.settings.description.info"
     },
     {
-      "type": "select",
-      "id": "heading_font_class",
-      "label": "Heading Font",
-      "options": [
-        { "value": "font-helvetica", "label": "Helvetica" },
-        { "value": "font-arial", "label": "Arial" },
-        { "value": "font-times", "label": "Times New Roman" }
-      ],
-      "default": "font-helvetica"
+      "type": "header",
+      "content": "t:sections.video.settings.header__3.content"
     },
     {
-      "type": "textarea",
-      "id": "text",
-      "label": "Description",
-      "default": "Your description here"
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "t:sections.video.settings.full_width.label",
+      "default": false
     },
     {
-      "type": "select",
-      "id": "description_font_class",
-      "label": "Description Font",
-      "options": [
-        { "value": "font-helvetica", "label": "Helvetica" },
-        { "value": "font-arial", "label": "Arial" },
-        { "value": "font-times", "label": "Times New Roman" }
-      ],
-      "default": "font-arial"
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
     },
     {
-      "type": "select",
-      "id": "text_alignment",
-      "label": "Text Alignment",
-      "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "center", "label": "Center" },
-        { "value": "right", "label": "Right" }
-      ],
-      "default": "center"
-    },
-    {
-      "type": "select",
-      "id": "content_animation",
-      "label": "Content Animation",
-      "options": [
-        { "value": "none", "label": "None" },
-        { "value": "fade-in", "label": "Fade In" },
-        { "value": "slide-up", "label": "Slide Up" },
-        { "value": "zoom-in", "label": "Zoom In" }
-      ],
-      "default": "fade-in"
-    },
-    {
-      "type": "text",
-      "id": "button_text",
-      "label": "Button Text",
-      "default": "Learn More"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button Link",
-      "default": "/"
-    },
-    {
-      "type": "select",
-      "id": "button_style",
-      "label": "Button Style",
-      "options": [
-        { "value": "primary", "label": "Primary" },
-        { "value": "secondary", "label": "Secondary" }
-      ],
-      "default": "primary"
-    },
-    {
-      "type": "range",
-      "id": "width",
-      "label": "Section Width",
-      "min": 50,
-      "max": 100,
-      "default": 100,
-      "unit": "%",
-      "step": 1
-    },
-    {
-      "type": "range",
-      "id": "height",
-      "label": "Section Height",
-      "min": 200,
-      "max": 800,
-      "default": 400,
-      "unit": "px",
-      "step": 10
-    },
-    {
-      "type": "range",
-      "id": "height_mobile",
-      "label": "Section Height (Mobile)",
-      "min": 100,
-      "max": 800,
-      "default": 300,
-      "unit": "px",
-      "step": 10
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
     },
     {
       "type": "range",
       "id": "padding_top",
-      "label": "Top Padding",
       "min": 0,
       "max": 100,
-      "default": 20,
-      "unit": "px"
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
     },
     {
       "type": "range",
       "id": "padding_bottom",
-      "label": "Bottom Padding",
       "min": 0,
       "max": 100,
-      "default": 20,
-      "unit": "px"
-    },
-    {
-      "type": "select",
-      "id": "color_scheme",
-      "label": "Color Scheme",
-      "options": [
-        { "value": "accent-1", "label": "Accent 1" },
-        { "value": "accent-2", "label": "Accent 2" },
-        { "value": "background-1", "label": "Background 1" },
-        { "value": "background-2", "label": "Background 2" }
-      ],
-      "default": "accent-1"
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
     }
   ],
   "presets": [
     {
-      "name": "Default Parallax",
-      "category": "Image"
+      "name": "t:sections.video.presets.name"
     }
   ]
 }
 {% endschema %}
-
-{% if section.settings.enable_parallax %}
-  <div
-    class="parallax-container {% if section.settings.sticky_position %} sticky {% endif %} {{ section.settings.color_scheme }}"
-    style="
-      width: {{ section.settings.width }}%;
-      height: {{ section.settings.height }}px;
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    "
-  >
-    <div
-      class="parallax-overlay"
-      style="
-        {% if section.settings.gradient_overlay %}
-          background: linear-gradient(45deg, {{ section.settings.gradient_overlay_color_1 }}, {{ section.settings.gradient_overlay_color_2 }});
-        {% else %}
-          background-color: {{ section.settings.overlay_color }};
-        {% endif %}
-        opacity: {{ section.settings.overlay_opacity | divided_by: 100 }};
-      "
-    ></div>
-
-    {% if section.settings.media_type == 'image' %}
-      <div
-        class="parallax-background-image"
-        style="background-image: url('{{ section.settings.background_image | img_url: '2000x' }}');"
-      ></div>
-    {% elsif section.settings.media_type == 'video' %}
-      <video 
-        {% if section.settings.video_autoplay %}autoplay{% endif %} 
-        {% if section.settings.video_loop %}loop{% endif %} 
-        {% if section.settings.video_muted %}muted{% endif %} 
-        {% if section.settings.video_controls %}controls{% endif %}
-        playsinline class="parallax-background-video" style="width: 100%; height: 100%; object-fit: cover;">
-        <source src="{{ section.settings.background_video }}" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    {% elsif section.settings.media_type == 'youtube' %}
-      <iframe
-        class="parallax-background-video"
-        src="https://www.youtube.com/embed/{{ section.settings.youtube_video_url | split: '/' | last }}?autoplay=1&loop=1&mute=1&controls=0&showinfo=0&rel=0&playlist={{ section.settings.youtube_video_url | split: '/' | last }}"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen
-        style="width: 100%; height: 100%; object-fit: cover;"
-      ></iframe>
-    {% endif %}
-
-    <div class="parallax-content {{ section.settings.content_animation }} {{ section.settings.text_alignment }}">
-      <h2 class="{{ section.settings.heading_font_class }}">{{ section.settings.heading }}</h2>
-      <p class="{{ section.settings.description_font_class }}">{{ section.settings.text }}</p>
-      {% if section.settings.button_text %}
-        <a href="{{ section.settings.button_link }}" class="btn btn-{{ section.settings.button_style }}">
-          {{ section.settings.button_text }}
-        </a>
-      {% endif %}
-    </div>
-  </div>
-{% endif %}
-
-<style>
-  .parallax-container {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-align: center;
-  }
-
-  .parallax-background-image, .parallax-background-video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      object-fit: cover;
-  }
-
-  /* Sticky Style */
-  .sticky {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-  }
-
-  .parallax-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-  }
-
-  .parallax-content {
-      position: relative;
-      z-index: 1;
-      color: white;
-  }
-
-  .fade-in { animation: fadeIn 1s ease; }
-  .slide-up { animation: slideUp 1s ease; }
-  .zoom-in { animation: zoomIn 1s ease; }
-
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-  @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-
-  /* Font Classes */
-  .font-helvetica { font-family: Helvetica, Arial, sans-serif; }
-  .font-arial { font-family: Arial, sans-serif; }
-  .font-times { font-family: 'Times New Roman', Times, serif; }
-
-  @media only screen and (max-width: 768px) {
-    .parallax-container {
-      height: {{ section.settings.height_mobile }}px;
-    }
-  }
-
-  /* Example styles for color schemes */
-  .accent-1 { background-color: #0055FF; }
-  .accent-2 { background-color: #FF4500; }
-  .background-1 { background-color: #2C3E50; }
-  .background-2 { background-color: #8E44AD; }
-</style>
-
-<script>
-  document.addEventListener('scroll', function() {
-    const parallaxContainer = document.querySelector('.parallax-container');
-    let scrollPosition = window.pageYOffset;
-    parallaxContainer.style.backgroundPositionY = (scrollPosition / {{ section.settings.parallax_speed }}) + 'px';
-  });
-</script>
