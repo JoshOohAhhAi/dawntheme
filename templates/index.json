@@ -325,6 +325,15 @@
         "show_text_below": true,
         "accessibility_info": "Slideshow about our brand"
       }
+    },
+    "custom_liquid_9yKDjq": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "{% assign youtube_url = \"https://www.youtube.com/embed/YOUR_VIDEO_ID\" %}\n\n<div class=\"youtube-video-container\">\n  <iframe width=\"560\" height=\"315\" \n          src=\"{{ youtube_url }}\" \n          title=\"YouTube video player\" \n          frameborder=\"0\" \n          allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" \n          allowfullscreen>\n  </iframe>\n</div>\n\n<style>\n  .youtube-video-container {\n    max-width: 100%;\n    display: flex;\n    justify-content: center;\n    margin-top: 20px;\n  }\n  .youtube-video-container iframe {\n    width: 100%;\n    max-width: 560px;\n    height: 315px;\n  }\n</style>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
@@ -335,6 +344,7 @@
     "video",
     "multicolumn",
     "slideshow_BaHarM",
-    "slideshow2_cGWEgQ"
+    "slideshow2_cGWEgQ",
+    "custom_liquid_9yKDjq"
   ]
 }
