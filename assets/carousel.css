@@ -254,4 +254,4 @@ carousel
 
 .carousel .carousel-item-wrapper:has(.carousel-item:hover) .carousel-ground {
 		opacity: 0.75;
-}arousel.css' | asset_url | stylesheet_tag }}
+}Carousel.css' | asset_url | stylesheet_tag }}
