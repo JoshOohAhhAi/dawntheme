@@ -54,46 +54,19 @@
         "padding_bottom": 20
       }
     },
-    "parallax_WMbbM9": {
-      "type": "parallax",
+    "custom_liquid_gmFXHN": {
+      "type": "custom-liquid",
       "settings": {
-        "media_type": "youtube",
-        "background_image": "shopify://shop_images/other-minimal-3.jpg",
-        "background_video": "",
-        "youtube_video_url": "",
-        "video_autoplay": true,
-        "video_loop": true,
-        "video_muted": true,
-        "video_controls": true,
-        "overlay_color": "#000000",
-        "gradient_overlay": true,
-        "gradient_overlay_color_1": "#000000",
-        "gradient_overlay_color_2": "#000000",
-        "enable_parallax": true,
-        "parallax_speed": 5,
-        "overlay_opacity": 30,
-        "sticky_position": false,
-        "heading": "Your Heading Here",
-        "heading_font_class": "font-helvetica",
-        "text": "Your description here",
-        "description_font_class": "font-arial",
-        "text_alignment": "center",
-        "content_animation": "fade-in",
-        "button_text": "Learn More",
-        "button_link": "/",
-        "button_style": "primary",
-        "width": 100,
-        "height": 400,
-        "height_mobile": 300,
-        "padding_top": 20,
-        "padding_bottom": 20,
-        "color_scheme": "accent-1"
+        "custom_liquid": "{% assign youtube_video_id = \"TSQ4sHJHXBI\" %}\n{% assign youtube_url = \"https://www.youtube.com/embed/\" | append: youtube_video_id | append: \"?autoplay=1&mute=1&loop=1&playlist=\" | append: youtube_video_id %}\n\n<div class=\"hero-banner\">\n  <div class=\"youtube-video-container\">\n    <iframe id=\"youtube-iframe\" \n            src=\"{{ youtube_url }}\" \n            title=\"YouTube video player\" \n            frameborder=\"0\" \n            allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" \n            referrerpolicy=\"strict-origin-when-cross-origin\"\n            allow=\"autoplay; encrypted-media; gyroscope; picture-in-picture\" \n            allowfullscreen>\n    </iframe>\n  </div>\n\n  <!-- Button Container -->\n  <div class=\"video-controls\">\n    <button id=\"mute-toggle\" onclick=\"toggleMute()\" \n            style=\"color: {{ settings.button_text_color }}; \n                   background-color: {{ settings.button_background_color }};\n                   padding: {{ settings.button_padding }}px;\">\n      {{ settings.mute_button_text }}\n    </button>\n    <a href=\"https://www.youtube.com/watch?v={{ youtube_video_id }}\" target=\"_blank\">\n      <button style=\"color: {{ settings.button_text_color }}; \n                     background-color: {{ settings.button_background_color }};\n                     padding: {{ settings.button_padding }}px;\">\n        {{ settings.like_button_text }}\n      </button>\n    </a>\n  </div>\n</div>\n\n<style>\n  /* Hero Banner Styling */\n  .hero-banner {\n    position: relative;\n    width: 100%;\n    height: 500px; /* Adjust for desired banner height */\n    overflow: hidden;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n  }\n  \n  .youtube-video-container {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    overflow: hidden;\n  }\n  \n  .youtube-video-container iframe {\n    width: 100%;\n    height: 100%;\n    object-fit: cover; /* Ensures the video covers the entire banner */\n  }\n  \n  .video-controls {\n    position: relative;\n    z-index: 1;\n    display: flex;\n    gap: 10px;\n    margin-top: 20px;\n  }\n</style>\n\n<script>\n  function toggleMute() {\n    var iframe = document.getElementById('youtube-iframe');\n    var isMuted = iframe.src.includes(\"mute=1\");\n    if (isMuted) {\n      iframe.src = iframe.src.replace(\"mute=1\", \"mute=0\");\n      document.getElementById('mute-toggle').innerText = \"{{ settings.mute_button_text | replace: 'Unmute', 'Mute' }}\";\n    } else {\n      iframe.src = iframe.src.replace(\"mute=0\", \"mute=1\");\n      document.getElementById('mute-toggle').innerText = \"{{ settings.mute_button_text }}\";\n    }\n  }\n</script>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     }
   },
   "order": [
     "announcement-bar",
     "header",
-    "parallax_WMbbM9"
+    "custom_liquid_gmFXHN"
   ]
 }
