@@ -1,0 +1,78 @@
+<div gp-el-wrapper style="--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb:var(--g-s-2xl)" class="gD6f9F-4y6 ">
+      
+    {%- liquid
+      assign current_variant = product.selected_or_first_available_variant
+      assign available = current_variant.available | default: false
+    -%}
+      <gp-product-quantity
+        data-id="gD6f9F-4y6"
+        data-disabled="{%- if available -%} false {%- else -%} true {%- endif -%}"
+        data-price=""
+        class="quantityClass gp-relative gp-inline-flex gp-w-full gp-bg-transparent gp-transition-all gp-duration-150 data-[disabled=true]:gp-opacity-60 "
+        style="--h:45px;--jc:left"
+      >
+
+      
+          <button
+            title="Decrement"
+            aria-label="decrement"
+            {% if available == false %} disabled {% endif %}
+            class="!gp-border-r-0 gp-bg-g-bg-3 gp-minus gp-flex gp-aspect-square gp-h-full gp-cursor-pointer gp-items-center gp-justify-center gp-outline-none disabled:gp-cursor-not-allowed"
+            style="--w:45px;--bg:var(--g-c-bg-3, bg-3);--c:#242424;--bs:solid;--bw:1px 1px 1px 1px;--bc:#E0E0E0;--bblr:0px;--bbrr:auto;--btlr:0px;--btrr:auto;--hvr-bblr:0px;--hvr-btlr:0px"
+          >
+            <span class="gp-inline-flex gp-items-center gp-justify-center" style="--w:21px;--w-tablet:21px;--w-mobile:21px">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="gp-h-full gp-w-full"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
+              </svg>
+            </span>
+          </button>
+      
+        <input
+          type="text"
+          name="product-quantity"
+          {% if available == false %} disabled {% endif %}
+          class="gp-bg-g-bg-3 !gp-border-x-0 gp-px-4 gp-flex gp-shadow-none gp-appearance-none gp-items-center gp-border-y gp-text-center gp-outline-none gp-transition-all gp-duration-150 hover:gp-text-black disabled:gp-pointer-events-none gp-h-auto gp-rounded-none gp-shrink-[99999] gp-w-full gp-min-w-[45px]"
+          style="--maxw:50px;--maxw-tablet:50px;--maxw-mobile:50px;--fs:normal;--ff:var(--g-font-Open-Sans, 'Open Sans'), var(--g-font-body, body);--weight:400;--ls:normal;--size:16px;--size-tablet:16px;--size-mobile:14px;--lh:150%;--lh-tablet:150%;--lh-mobile:150%;--c:#242424;--bg:var(--g-c-bg-3, bg-3);--bs:solid;--bw:1px 1px 1px 1px;--bc:#E0E0E0"
+          aria-label="Quantity"
+          inputmode="numeric"
+          min="{{ current_variant.quantity_rule.min }}"
+          step="{{ current_variant.quantity_rule.increment }}"
+          value="1"
+          autocomplete='off'
+        />
+
+        
+          <button
+            {% if available == false %} disabled {% endif %}
+            aria-label="increment"
+            title="Increment"
+            class="!gp-border-l-0 gp-bg-g-bg-3 gp-plus gp-flex gp-aspect-square gp-h-full gp-cursor-pointer gp-items-center gp-justify-center gp-outline-none gp-transition-all gp-duration-150 disabled:gp-pointer-events-none"
+            style="--w:45px;--bg:var(--g-c-bg-3, bg-3);--c:#242424;--bs:solid;--bw:1px 1px 1px 1px;--bc:#E0E0E0;--bblr:auto;--bbrr:0px;--btlr:auto;--btrr:0px;--hvr-bbrr:0px;--hvr-btrr:0px"
+          >
+            <span class="gp-inline-flex gp-items-center gp-justify-center" style="--w:21px;--w-tablet:21px;--w-mobile:21px">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="gp-h-full gp-w-full"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                />
+              </svg>
+            </span>
+          </button>
+        
+      </gp-product-quantity>
+      <script {% if section.settings.section_preload == "false" %}class="gps-link" delay {% else %}src{% endif %}="https://d2ls1pfffhvy22.cloudfront.net/assets-v2/gp-product-quantity.js?v={{ shop.metafields.GEMPAGES.ASSETS_VERSION }}" defer="defer"></script>
+      </div>

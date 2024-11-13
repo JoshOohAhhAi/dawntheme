@@ -1,0 +1,184 @@
+<div gp-el-wrapper style="--bs:none;--bw:0px;--bc:transparent;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-small);--mb-mobile:var(--g-s-3xl)" class="g8GlD_iw5W ">
+      
+    {%- liquid
+      assign inventory_quantity = variant.inventory_quantity | default: 0
+      assign supported_payment_methods = shop.enabled_payment_types
+    -%}
+    <gp-product-dynamic data-id="g8GlD_iw5W" data-translate-label=""  gp-data='{"setting":{},"totalVariant":"{{product.variants.size}}"}
+    '>
+      <div class="gp-block wrap__button--unbranded__g8GlD_iw5W [&_.shopify-payment-button\_\_button--unbranded]:gp-min-h-fit disabled:[&_.shopify-payment-button\_\_button--unbranded]:gp-pointer-events-none [&_.shopify-payment-button\_\_button--unbranded]:!gp-g-paragraph-1 [&_.shopify-payment-button\_\_button--unbranded]:hover:gp-text-g-bg-3 [&_.shopify-payment-button\_\_button--unbranded]:gp-text-g-bg-3">
+          {{ form | payment_button }}
+      </div>
+      {% style %}
+        .wrap__button--unbranded__g8GlD_iw5W {
+          text-align: left !important;
+        }
+
+        .wrap__button--unbranded__g8GlD_iw5W .shopify-payment-button {
+          display: inline-block;
+          
+      width: 100%;
+      height: Auto;
+    
+        }
+
+        .wrap__button--unbranded__g8GlD_iw5W .shopify-payment-button div {
+          width: 100%;
+          margin-top: 0px !important;
+        }
+
+        .wrap__button--unbranded__g8GlD_iw5W .shopify-payment-button .shopify-payment-button__more-options {
+          display: none;
+        }
+
+        .wrap__button--unbranded__g8GlD_iw5W .shopify-payment-button .shopify-payment-button__button--unbranded {
+          max-width: 100%;
+          min-width: unset;
+          background-color: unset !important;
+          position: relative;
+          border: none !important;
+          margin: 0;
+          z-index: 0;
+          border-radius: unset;
+          width: 100%;
+          
+  font-family: var(--g-font-Open-Sans, 'Open Sans'), var(--g-font-body, body) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  letter-spacing: normal !important;
+  line-height: 150% !important;
+  ;
+  ;
+  ;
+  
+          color: var(--g-c-bg-3, bg-3) !important;
+          
+          padding-top: 11px !important;;
+      padding-bottom: 11px !important;;
+      padding-left: 8px !important;;
+      padding-right: 8px !important;;
+    
+          
+      border-bottom-left-radius: 0px !important;
+      border-bottom-right-radius: 0px !important;
+      border-top-left-radius: 0px !important;
+      border-top-right-radius: 0px !important;
+      
+          
+      width: 100%;
+      height: Auto;
+    
+        }
+        .wrap__button--unbranded__g8GlD_iw5W .shopify-payment-button .shopify-payment-button__button--unbranded::before {
+          content: "";
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          pointer-events: none;
+          z-index: -1;
+          border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  border-color: #242424;
+  
+          
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      
+          background-color: #242424;
+        }
+
+        .wrap__button--unbranded__g8GlD_iw5W .shopify-payment-button .shopify-payment-button__button--unbranded:hover {
+          color: var(--g-c-bg-3, bg-3) !important;
+          
+        }
+        .wrap__button--unbranded__g8GlD_iw5W .shopify-payment-button .shopify-payment-button__button--unbranded:hover::before {
+          
+          
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      
+          background-color: #424242;
+        }
+
+        .wrap__button--unbranded__g8GlD_iw5W .shopify-payment-button .shopify-payment-button__button--unbranded::after {
+          border-radius: 0;
+          box-shadow: none;
+        }
+
+        .wrap__button--unbranded__g8GlD_iw5W .shopify-payment-button .shopify-payment-button__button--unbranded::after:hover {
+          border-radius: 0;
+          box-shadow: none;
+        }
+
+        .wrap__button--unbranded__g8GlD_iw5W .shopify-payment-button > div {
+          max-width: 100%;
+        }
+
+        .wrap__button--unbranded__g8GlD_iw5W .shopify-payment-button > div > div {
+          max-width: 100%;
+        }
+
+        @media only screen and (max-width: 1023px) and (min-width: 768px)  {
+          .wrap__button--unbranded__g8GlD_iw5W {
+            
+          }
+          .wrap__button--unbranded__g8GlD_iw5W .shopify-payment-button {
+            
+      width: 100%!important;;
+      height: Auto!important;;
+    
+          }
+          .wrap__button--unbranded__g8GlD_iw5W .shopify-payment-button .shopify-payment-button__button--unbranded {
+            width: 100%;
+
+            padding-top: 11px !important;;
+      padding-bottom: 11px !important;;
+      padding-left: 8px !important;;
+      padding-right: 8px !important;;
+    
+            line-height: 150% !important;
+            font-size: 16px !important;
+            
+      width: 100%;
+      height: Auto;
+    
+          }
+        }
+
+        @media only screen and (max-width: 767px) {
+          .wrap__button--unbranded__g8GlD_iw5W {
+            
+          }
+          .wrap__button--unbranded__g8GlD_iw5W .shopify-payment-button {
+            
+      width: 100%!important;;
+      height: Auto!important;;
+    
+          }
+          .wrap__button--unbranded__g8GlD_iw5W .shopify-payment-button .shopify-payment-button__button--unbranded {
+            width: 100%;
+            padding-top: 10px !important;;
+      padding-bottom: 10px !important;;
+      padding-left: 8px !important;;
+      padding-right: 8px !important;;
+    
+            line-height: 150% !important;
+            font-size: 14px !important;
+            
+      width: 100%;
+      height: Auto;
+    
+          }
+        }
+
+        {% endstyle %}
+      </gp-product-dynamic>
+  <script {% if section.settings.section_preload == "false" %}class="gps-link" delay {% else %}src{% endif %}="https://d2ls1pfffhvy22.cloudfront.net/assets-v2/gp-product-dynamic.js?v={{ shop.metafields.GEMPAGES.ASSETS_VERSION }}" defer="defer"></script>
+  
+      </div>

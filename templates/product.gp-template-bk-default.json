@@ -30,7 +30,7 @@
         },
         "image-with-text-1": {
           "settings": {
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
             "text_style": "body"
           },
           "type": "text"
@@ -118,18 +118,15 @@
           "type": "collapsible_tab"
         },
         "description": {
-          "settings": {
-          },
+          "settings": {},
           "type": "description"
         },
         "price": {
-          "settings": {
-          },
+          "settings": {},
           "type": "price"
         },
         "quantity_selector": {
-          "settings": {
-          },
+          "settings": {},
           "type": "quantity_selector"
         },
         "share": {
@@ -139,8 +136,7 @@
           "type": "share"
         },
         "title": {
-          "settings": {
-          },
+          "settings": {},
           "type": "title"
         },
         "variant_picker": {
@@ -180,7 +176,7 @@
           "settings": {
             "link": "",
             "link_label": "",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
             "title": "Free Shipping"
           },
           "type": "column"
@@ -189,7 +185,7 @@
           "settings": {
             "link": "",
             "link_label": "",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
             "title": "Hassle-Free Exchanges"
           },
           "type": "column"
