@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'" sticky>
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -10,7 +10,27 @@
 {%- if section.settings.menu_type_desktop == 'mega' -%}
   <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
+:root {
+  --header-height: auto;
+}
 
+.shopify-section-header-sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 990;
+  transition: transform 0.3s ease;
+}
+
+.shopify-section-header-hidden {
+  transform: translateY(-100%);
+}
+
+.section-header {
+  top: 0;
+  width: 100%;
+  z-index: 3;
+}
 
 <style>
   header-drawer {
