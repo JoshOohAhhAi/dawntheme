@@ -84,4 +84,16 @@
 
 .mega-menu__list--condensed .mega-menu__link {
   font-weight: normal;
+}.mega-menu__link:focus {
+  outline: 2px solid rgba(var(--color-foreground), 0.75);
+  outline-offset: 2px;
+}@media (max-width: 768px) {
+  .mega-menu__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
+.mega-menu__content {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+
