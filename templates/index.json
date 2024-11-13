@@ -334,6 +334,12 @@
         "padding_top": 40,
         "padding_bottom": 52
       }
+    },
+    "carousel_iELww7": {
+      "type": "carousel",
+      "settings": {
+        "num_slides": 10
+      }
     }
   },
   "order": [
@@ -345,6 +351,7 @@
     "multicolumn",
     "slideshow_BaHarM",
     "slideshow2_cGWEgQ",
-    "custom_liquid_9yKDjq"
+    "custom_liquid_9yKDjq",
+    "carousel_iELww7"
   ]
 }
