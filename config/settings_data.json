@@ -144,63 +144,52 @@
         }
       }
     },
-    "content_for_index": [
-
-    ],
+    "content_for_index": [],
     "blocks": {
       "7038669094299204015": {
         "type": "shopify://apps/avada-seo-suite/blocks/avada-seo/15507c6e-1aa3-45d3-b698-7e175e033440",
         "disabled": false,
-        "settings": {
-        }
+        "settings": {}
       },
       "pagefly-page-builder": {
         "type": "shopify://apps/pagefly-page-builder/blocks/app-embed/83e179f7-59a0-4589-8c66-c0dddf959200",
         "disabled": false,
-        "settings": {
-        }
+        "settings": {}
       },
       "15179280101827346836": {
         "type": "shopify://apps/juniper-tiktok-feed/blocks/head-block/fa514c33-5475-4484-b270-5f1e7eb87a9a",
         "disabled": false,
-        "settings": {
-        }
+        "settings": {}
       },
       "6174324309569838175": {
         "type": "shopify://apps/smile-io/blocks/smile-shopify-app/2fae4e25-1841-4ea2-bc02-bd548478c4f6",
         "disabled": true,
-        "settings": {
-        }
+        "settings": {}
       },
       "18408366429334172745": {
         "type": "shopify://apps/pop-convert-pop-ups-banners/blocks/app-embed/ed587aec-4936-43ae-a1b3-1c9e0d08f185",
         "disabled": false,
-        "settings": {
-        }
+        "settings": {}
       },
       "13375938897875554821": {
         "type": "shopify://apps/qikify-sales-pop-up/blocks/app-embed/688dd516-1cdc-4008-8329-23089a1c4e24",
         "disabled": false,
-        "settings": {
-        }
+        "settings": {}
       },
       "16082856696551579736": {
         "type": "shopify://apps/ironpop-sales-pop-up-proof/blocks/popup-block/5da395e9-654a-4e3b-a225-4ca6a7dbcece",
         "disabled": false,
-        "settings": {
-        }
+        "settings": {}
       },
       "11549439387117343914": {
         "type": "shopify://apps/helpy-social-bar/blocks/app-embed/583272e0-7173-47be-b571-6b597239b999",
         "disabled": false,
-        "settings": {
-        }
+        "settings": {}
       },
       "8698826295320421822": {
         "type": "shopify://apps/dakaas-social-bar/blocks/app-embed/0d821215-43b9-4a39-925d-44613cd0dd23",
         "disabled": false,
-        "settings": {
-        }
+        "settings": {}
       },
       "6167269416664322476": {
         "type": "shopify://apps/mega-social-icon-bar/blocks/social-icons/164e57eb-05da-4262-8be6-ee704e561b36",
@@ -229,14 +218,12 @@
       "21474836472147483647": {
         "type": "shopify://apps/ecomposer-landing-page-builder/blocks/app-embed/a0fc26e1-7741-4773-8b27-39389b4fb4a0",
         "disabled": false,
-        "settings": {
-        }
+        "settings": {}
       },
       "12648720965605750730": {
         "type": "shopify://apps/smarttabs-product-tabs/blocks/app-embed/e4a7401b-931e-422d-bab8-fc6ef5da44a4",
         "disabled": false,
-        "settings": {
-        }
+        "settings": {}
       },
       "15683396631634586217": {
         "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
@@ -255,8 +242,7 @@
       "6478312753674380289": {
         "type": "shopify://apps/gempages-builder/blocks/embed-gp-script-head/20b379d4-1b20-474c-a6ca-665c331919f3",
         "disabled": false,
-        "settings": {
-        }
+        "settings": {}
       }
     },
     "color_schemes": {
@@ -267,24 +253,8 @@
           "text": "#27282a",
           "button": "#27282a",
           "button_label": "#ffffff",
-          "secondary_button": "#F3F3F3",
           "secondary_button_label": "#27282a",
-          "shadow": "#121212",
-          "accent": "#334FB4",
-          "link": "#334FB4",
-          "badge_background": "#334FB4",
-          "badge_text": "#FFFFFF",
-          "badge_border": "#334FB4",
-          "header_background": "#FFFFFF",
-          "footer_background": "#F3F3F3",
-          "navbar_background": "#FFFFFF",
-          "navbar_text": "#121212",
-          "hover_color": "#334FB4",
-          "active_color": "#121212",
-          "focus_color": "#334FB4",
-          "error_color": "#DE3618",
-          "success_color": "#2A9A16",
-          "warning_color": "#FFA500"
+          "shadow": "#121212"
         }
       },
       "background-2": {
@@ -294,24 +264,8 @@
           "text": "#121212",
           "button": "#121212",
           "button_label": "#f806fa",
-          "secondary_button": "#F3F3F3",
           "secondary_button_label": "#121212",
-          "shadow": "#121212",
-          "accent": "#334FB4",
-          "link": "#334FB4",
-          "badge_background": "#334FB4",
-          "badge_text": "#FFFFFF",
-          "badge_border": "#334FB4",
-          "header_background": "#FFFFFF",
-          "footer_background": "#F3F3F3",
-          "navbar_background": "#FFFFFF",
-          "navbar_text": "#121212",
-          "hover_color": "#334FB4",
-          "active_color": "#121212",
-          "focus_color": "#334FB4",
-          "error_color": "#DE3618",
-          "success_color": "#2A9A16",
-          "warning_color": "#FFA500"
+          "shadow": "#121212"
         }
       },
       "inverse": {
@@ -321,24 +275,8 @@
           "text": "{{ shop.brand.colors.primary[0].background }}",
           "button": "#121212",
           "button_label": "#ffffff",
-          "secondary_button": "#F3F3F3",
           "secondary_button_label": "#121212",
-          "shadow": "#121212",
-          "accent": "#334FB4",
-          "link": "#334FB4",
-          "badge_background": "#334FB4",
-          "badge_text": "#FFFFFF",
-          "badge_border": "#334FB4",
-          "header_background": "#FFFFFF",
-          "footer_background": "#F3F3F3",
-          "navbar_background": "#FFFFFF",
-          "navbar_text": "#121212",
-          "hover_color": "#334FB4",
-          "active_color": "#121212",
-          "focus_color": "#334FB4",
-          "error_color": "#DE3618",
-          "success_color": "#2A9A16",
-          "warning_color": "#FFA500"
+          "shadow": "#121212"
         }
       },
       "accent-1": {
@@ -348,24 +286,8 @@
           "text": "#27282a",
           "button": "#27282a",
           "button_label": "#ffffff",
-          "secondary_button": "#F3F3F3",
           "secondary_button_label": "#27282a",
-          "shadow": "#121212",
-          "accent": "#334FB4",
-          "link": "#334FB4",
-          "badge_background": "#334FB4",
-          "badge_text": "#FFFFFF",
-          "badge_border": "#334FB4",
-          "header_background": "#FFFFFF",
-          "footer_background": "#F3F3F3",
-          "navbar_background": "#FFFFFF",
-          "navbar_text": "#121212",
-          "hover_color": "#334FB4",
-          "active_color": "#121212",
-          "focus_color": "#334FB4",
-          "error_color": "#DE3618",
-          "success_color": "#2A9A16",
-          "warning_color": "#FFA500"
+          "shadow": "#121212"
         }
       },
       "accent-2": {
@@ -375,24 +297,8 @@
           "text": "#fb4602",
           "button": "#764607",
           "button_label": "#121212",
-          "secondary_button": "#F3F3F3",
           "secondary_button_label": "#ffffff",
-          "shadow": "#121212",
-          "accent": "#334FB4",
-          "link": "#334FB4",
-          "badge_background": "#334FB4",
-          "badge_text": "#FFFFFF",
-          "badge_border": "#334FB4",
-          "header_background": "#FFFFFF",
-          "footer_background": "#F3F3F3",
-          "navbar_background": "#FFFFFF",
-          "navbar_text": "#121212",
-          "hover_color": "#334FB4",
-          "active_color": "#121212",
-          "focus_color": "#334FB4",
-          "error_color": "#DE3618",
-          "success_color": "#2A9A16",
-          "warning_color": "#FFA500"
+          "shadow": "#121212"
         }
       },
       "accent-3": {
@@ -402,24 +308,8 @@
           "text": "#ffffff",
           "button": "#27282a",
           "button_label": "#ffffff",
-          "secondary_button": "#F3F3F3",
           "secondary_button_label": "#27282a",
-          "shadow": "#121212",
-          "accent": "#334FB4",
-          "link": "#334FB4",
-          "badge_background": "#334FB4",
-          "badge_text": "#FFFFFF",
-          "badge_border": "#334FB4",
-          "header_background": "#FFFFFF",
-          "footer_background": "#F3F3F3",
-          "navbar_background": "#FFFFFF",
-          "navbar_text": "#121212",
-          "hover_color": "#334FB4",
-          "active_color": "#121212",
-          "focus_color": "#334FB4",
-          "error_color": "#DE3618",
-          "success_color": "#2A9A16",
-          "warning_color": "#FFA500"
+          "shadow": "#121212"
         }
       },
       "scheme-71035b0c-91e9-4f9a-bc05-28c026ec3392": {
@@ -429,24 +319,8 @@
           "text": "#2c3e50",
           "button": "#3498db",
           "button_label": "#f4f4f4",
-          "secondary_button": "#F3F3F3",
           "secondary_button_label": "#f39c12",
-          "shadow": "#8e44ad",
-          "accent": "#334FB4",
-          "link": "#334FB4",
-          "badge_background": "#334FB4",
-          "badge_text": "#FFFFFF",
-          "badge_border": "#334FB4",
-          "header_background": "#FFFFFF",
-          "footer_background": "#F3F3F3",
-          "navbar_background": "#FFFFFF",
-          "navbar_text": "#121212",
-          "hover_color": "#334FB4",
-          "active_color": "#121212",
-          "focus_color": "#334FB4",
-          "error_color": "#DE3618",
-          "success_color": "#2A9A16",
-          "warning_color": "#FFA500"
+          "shadow": "#8e44ad"
         }
       },
       "scheme-83108d0f-a82d-44e2-b7f8-6e1dac7d4b3a": {
@@ -456,24 +330,8 @@
           "text": "#0a0a0a",
           "button": "#9d00ff",
           "button_label": "#f4f4f4",
-          "secondary_button": "#F3F3F3",
           "secondary_button_label": "#ff4500",
-          "shadow": "#2c3e50",
-          "accent": "#334FB4",
-          "link": "#334FB4",
-          "badge_background": "#334FB4",
-          "badge_text": "#FFFFFF",
-          "badge_border": "#334FB4",
-          "header_background": "#FFFFFF",
-          "footer_background": "#F3F3F3",
-          "navbar_background": "#FFFFFF",
-          "navbar_text": "#121212",
-          "hover_color": "#334FB4",
-          "active_color": "#121212",
-          "focus_color": "#334FB4",
-          "error_color": "#DE3618",
-          "success_color": "#2A9A16",
-          "warning_color": "#FFA500"
+          "shadow": "#2c3e50"
         }
       }
     }
@@ -671,8 +529,6 @@
     }
   },
   "platform_customizations": {
-    "custom_css": [
-
-    ]
+    "custom_css": []
   }
 }

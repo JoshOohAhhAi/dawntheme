@@ -53,10 +53,47 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
+    },
+    "parallax_WMbbM9": {
+      "type": "parallax",
+      "settings": {
+        "media_type": "youtube",
+        "background_image": "shopify://shop_images/other-minimal-3.jpg",
+        "background_video": "",
+        "youtube_video_url": "",
+        "video_autoplay": true,
+        "video_loop": true,
+        "video_muted": true,
+        "video_controls": true,
+        "overlay_color": "#000000",
+        "gradient_overlay": true,
+        "gradient_overlay_color_1": "#000000",
+        "gradient_overlay_color_2": "#000000",
+        "enable_parallax": true,
+        "parallax_speed": 5,
+        "overlay_opacity": 30,
+        "sticky_position": false,
+        "heading": "Your Heading Here",
+        "heading_font_class": "font-helvetica",
+        "text": "Your description here",
+        "description_font_class": "font-arial",
+        "text_alignment": "center",
+        "content_animation": "fade-in",
+        "button_text": "Learn More",
+        "button_link": "/",
+        "button_style": "primary",
+        "width": 100,
+        "height": 400,
+        "height_mobile": 300,
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "color_scheme": "accent-1"
+      }
     }
   },
   "order": [
     "announcement-bar",
-    "header"
+    "header",
+    "parallax_WMbbM9"
   ]
 }
