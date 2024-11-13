@@ -1,6 +1,18 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
-{% endschema %}
+
+<!-- templates/sections/image-carousel.liquid -->
+<div class="carousel">
+    <div class="carousel-control-button left"><input type="radio" name="carousel-control-input"></div>
+    <div class="carousel-control-button right"><input type="radio" name="carousel-control-input" checked></div>
+
+    <div class="carousel-rotation-direction">
+        <ul class="carousel-item-wrapper" style="--_num-elements: {{ section.settings.num_slides }}">
+            {% for block in section.blocks %}
+                <li class="carousel-item" style="--_index: {{ forloop.index }}; --_image-url: url('{{ block.settings.image | img_url: '2048x2048' }}')">
+                    <a href="{{ block.settings.link }}" target="_blank">{{ block.settings.description }}</a>
+                </li>
+            {% endfor %}
+            <li class="carousel-ground"></li>
+        </ul>
+    </div>
+</div>
+
