@@ -1,6 +1,224 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{% comment %} Custom Parallax Section {% endcomment %}
+
+<div class="section-{{ section.id }} parallax-section {{ section.settings.color_scheme }} {% if section.settings.sticky_position %} sticky {% endif %}">
+  <div
+    class="parallax-container"
+    style="
+      background-image: url('{{ section.settings.background_image | img_url: '2000x' }}');
+      width: {{ section.settings.width }}%;
+      height: {{ section.settings.height }}px;
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    "
+  >
+    <div
+      class="parallax-overlay"
+      style="background-color: rgba(0, 0, 0, {{ section.settings.overlay_opacity | divided_by: 100 }});"
+    ></div>
+
+    <div class="parallax-content">
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.text }}</p>
+      {% if section.settings.button_text %}
+        <a href="{{ section.settings.button_link }}" class="btn btn-{{ section.settings.button_style }}">
+          {{ section.settings.button_text }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% if section.settings.enable_parallax %}
+  <script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.5.1/dist/simpleParallax.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const images = document.querySelectorAll('.parallax-container');
+      if (images.length) {
+        new simpleParallax(images, { scale: 1.5 });
+      }
+    });
+  </script>
+{% endif %}
+
+<style>
+  .parallax-section {
+      position: relative;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
   }
+
+  /* Sticky Position */
+  .sticky {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+  }
+
+  /* Overlay */
+  .parallax-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+  }
+
+  .parallax-content {
+      position: relative;
+      z-index: 1;
+  }
+
+  /* Button Styles */
+  .btn-primary {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+  }
+
+  .btn-secondary {
+      background-color: #6c757d;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+  }
+
+  /* Color Schemes */
+  .accent-1 { background-color: #0055FF; }
+  .accent-2 { background-color: #FF4500; }
+  .background-1 { background-color: #2C3E50; }
+  .background-2 { background-color: #8E44AD; }
+</style>
+
+{% schema %}
+{
+  "name": "Parallax Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_parallax",
+      "label": "Enable Parallax Effect",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity",
+      "min": 0,
+      "max": 100,
+      "default": 30,
+      "unit": "%"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_position",
+      "label": "Enable Sticky Position",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading Text",
+      "default": "Your Heading Here"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "Your description here"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "/"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button Style",
+      "options": [
+        { "value": "primary", "label": "Primary" },
+        { "value": "secondary", "label": "Secondary" }
+      ],
+      "default": "primary"
+    },
+    {
+      "type": "range",
+      "id": "width",
+      "label": "Section Width",
+      "min": 50,
+      "max": 100,
+      "default": 100,
+      "unit": "%",
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "label": "Section Height",
+      "min": 200,
+      "max": 800,
+      "default": 400,
+      "unit": "px",
+      "step": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "options": [
+        { "value": "accent-1", "label": "Accent 1" },
+        { "value": "accent-2", "label": "Accent 2" },
+        { "value": "background-1", "label": "Background 1" },
+        { "value": "background-2", "label": "Background 2" }
+      ],
+      "default": "accent-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default Parallax",
+      "category": "Image"
+    }
+  ]
+}
 {% endschema %}
