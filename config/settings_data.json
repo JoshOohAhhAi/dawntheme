@@ -248,6 +248,16 @@
         "type": "shopify://apps/z-facebook-messenger-chat/blocks/zotabox_embed/d373f1c7-09a2-4414-b6f1-6c7e25e73133",
         "disabled": false,
         "settings": {}
+      },
+      "15079184273603081885": {
+        "type": "shopify://apps/essential-shipping-bar/blocks/app_embed/4125375e-37c8-4137-949d-c4e1a3aac572",
+        "disabled": false,
+        "settings": {}
+      },
+      "4499299782520642052": {
+        "type": "shopify://apps/clean-size-charts/blocks/core/feed2801-552f-4e8f-ba1f-32ba9fe8a8f0",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
