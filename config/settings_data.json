@@ -243,6 +243,11 @@
         "type": "shopify://apps/gempages-builder/blocks/embed-gp-script-head/20b379d4-1b20-474c-a6ca-665c331919f3",
         "disabled": false,
         "settings": {}
+      },
+      "11609510145408961983": {
+        "type": "shopify://apps/z-facebook-messenger-chat/blocks/zotabox_embed/d373f1c7-09a2-4414-b6f1-6c7e25e73133",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
