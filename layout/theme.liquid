@@ -1,6 +1,7 @@
 <!doctype html>
 <html class="js" lang="{{ request.locale.iso_code | default: 'en' }}">
 <head>
+ {%- render 'ecom_header' -%}
   {% section 'video-banner-section' %}
     <!-- Preload Google Analytics and Custom Fonts for Faster Loading -->
     <link rel="preload" href="https://www.googletagmanager.com/gtag/js?id=G-FJSEE2N4HT" as="script">
@@ -24,12 +25,10 @@
         /* Add other essential styles for above-the-fold content here */
     </style>
 
-    <!-- BEAE-GLOBAL-FONT --> 
-    {% capture the_snippet_global_font %}{% include 'beae-global-font' %}{% endcapture %}
-    {% unless the_snippet_global_font contains 'Liquid error' %}
-    {{ the_snippet_global_font }}
-    {% endunless %}
-    <!-- END BEAE-GLOBAL-FONT -->
+    
+<!-- BEAE-GLOBAL-FONT --> 
+{% capture the_snippet_global_font %}{% include 'beae-global-font' %}{% endcapture %} {% unless the_snippet_global_font contains 'Liquid error' %} {{ the_snippet_global_font }} {% endunless %} 
+ <!-- END BEAE-GLOBAL-FONT -->
     {{ 'carousel.css' | asset_url | stylesheet_tag }}
 
     <script>
@@ -42,9 +41,11 @@
         });
     </script>
 
+
 <!-- BEAE-GLOBAL-FONT --> 
 {% capture the_snippet_global_font %}{% include 'beae-global-font' %}{% endcapture %} {% unless the_snippet_global_font contains 'Liquid error' %} {{ the_snippet_global_font }} {% endunless %} 
  <!-- END BEAE-GLOBAL-FONT -->
+
 
 
 
@@ -437,11 +438,13 @@
 
 
 
+
 <!-- BEAE-FOOTER --> 
 {%- if content_for_layout contains 'beae-builder' -%}
 {%- render 'beae_footer' -%}
 {%- endif -%}
 <!-- END BEAE-FOOTER -->
+
 
 
 
@@ -456,5 +459,6 @@
 
 
 
+{% include 'cjpod' %}
 </body>
 </html>
