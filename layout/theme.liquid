@@ -6,51 +6,13 @@
     <!-- Preload Google Analytics and Custom Fonts for Faster Loading -->
     <link rel="preload" href="https://www.googletagmanager.com/gtag/js?id=G-FJSEE2N4HT" as="script">
     <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
-
-    <!-- Inline Critical CSS for Above-the-Fold Content -->
-    <style>
-        /* Reset potential margin and padding issues */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        /* Prevent horizontal scrolling */
-        body, html {
-            overflow-x: hidden;
-        }
-
-        .logo { height: 50px; }
-        /* Add other essential styles for above-the-fold content here */
-    </style>
-
-    
+<!doctype html>
+<html class="js" lang="{{ request.locale.iso_code }}">
+  <head>
+ {%- render 'ecom_header' -%}
 <!-- BEAE-GLOBAL-FONT --> 
 {% capture the_snippet_global_font %}{% include 'beae-global-font' %}{% endcapture %} {% unless the_snippet_global_font contains 'Liquid error' %} {{ the_snippet_global_font }} {% endunless %} 
  <!-- END BEAE-GLOBAL-FONT -->
-    {{ 'carousel.css' | asset_url | stylesheet_tag }}
-
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-FJSEE2N4HT', {
-            'send_page_view': true, // Ensures a pageview is sent upon load
-            'anonymize_ip': true  // Anonymize IP addresses if required by privacy regulations in your region
-        });
-    </script>
-
-
-<!-- BEAE-GLOBAL-FONT --> 
-{% capture the_snippet_global_font %}{% include 'beae-global-font' %}{% endcapture %} {% unless the_snippet_global_font contains 'Liquid error' %} {{ the_snippet_global_font }} {% endunless %} 
- <!-- END BEAE-GLOBAL-FONT -->
-
-
-
-
-
-
 <!-- BEAE-HEADER --> 
 {%- if content_for_layout contains 'beae-builder' or request.design_mode -%}
 {%- render 'beae_header' -%}
@@ -355,7 +317,7 @@
             {% unless the_snippet_beae-global-theme-setting contains 'Liquid error' %}
                 {{ the_snippet_beae-global-theme-setting }}
             {% endunless %}
-{%- render 'foxify-head' -%}</head>
+</head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
@@ -423,7 +385,7 @@
         countrySelectorSearchCount: `{{ 'localization.country_results_count' | t: count: '[count]' }}`,
       };
     </script>
--%} <script> document.querySelectorAll('.mega-menu__link').forEach(link => { link.addEventListener('focus', () => { link.closest('.mega-menu__item').classList.add('focused'); }); link.addEventListener('blur', () => { link.closest('.mega-menu__item').classList.remove('focused'); }); }); </script>
+
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
@@ -432,33 +394,15 @@
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
   
-
-
-
-
-
-
-
 <!-- BEAE-FOOTER --> 
 {%- if content_for_layout contains 'beae-builder' -%}
 {%- render 'beae_footer' -%}
 {%- endif -%}
 <!-- END BEAE-FOOTER -->
-
-
-
-
-
-
 <!-- BEAE-ANALYTICS --> 
 {%- if content_for_layout contains 'beae-builder' -%}
 {%- render 'beae_analytic_helper' -%}
 {%- endif -%}
-<!-- END BEAE-ANALYTICS -->{%- render "ecom_footer"-%}
-{%- render 'foxify-footer' -%}
-
-
-
-
+<!-- END BEAE-ANALYTICS -->{%- render "ecom_footer"-%}{% include 'cjpod' %}
 </body>
 </html>
