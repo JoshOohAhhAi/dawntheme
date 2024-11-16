@@ -1,6 +1,59 @@
+<section class="video-banner-section">
+  <div class="video-banner-wrapper">
+    <!-- Video Background -->
+    <video autoplay muted loop playsinline class="video-banner">
+      <source src="{{ section.settings.video_url }}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- Overlay Text and CTA Buttons -->
+    <div class="video-banner-overlay">
+      <h1 class="banner-title">{{ section.settings.banner_title }}</h1>
+      <p class="banner-subtitle">{{ section.settings.banner_subtitle }}</p>
+      <a href="{{ section.settings.button_url }}" class="banner-button">{{ section.settings.button_text }}</a>
+    </div>
+  </div>
+</section>
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Video Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Video URL (MP4 format)",
+      "default": "https://your-video-url.mp4"
+    },
+    {
+      "type": "text",
+      "id": "banner_title",
+      "label": "Banner Title",
+      "default": "Welcome to Our Store"
+    },
+    {
+      "type": "text",
+      "id": "banner_subtitle",
+      "label": "Banner Subtitle",
+      "default": "Explore Our Latest Collection"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button Link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default",
+      "category": "Banner"
+    }
+  ]
+}
 {% endschema %}
