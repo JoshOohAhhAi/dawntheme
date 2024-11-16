@@ -1,6 +1,7 @@
 <!doctype html>
 <html class="js" lang="{{ request.locale.iso_code | default: 'en' }}">
-<head>{% section 'video-banner' %}
+<head>
+  {% section 'video-banner-section' %}
     <!-- Preload Google Analytics and Custom Fonts for Faster Loading -->
     <link rel="preload" href="https://www.googletagmanager.com/gtag/js?id=G-FJSEE2N4HT" as="script">
     <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
