@@ -142,6 +142,16 @@
         "settings": {
           "color_scheme": "background-1"
         }
+      },
+      "video-banner-section": {
+        "type": "video-banner-section",
+        "settings": {
+          "video_url": "https://youtu.be/TSQ4sHJHXBI?si=PrDvjOhgWHwvN0UH",
+          "banner_title": "Welcome to Our Store",
+          "banner_subtitle": "Explore Our Latest Collection",
+          "button_url": "shopify://collections/all",
+          "button_text": "Shop Now"
+        }
       }
     },
     "content_for_index": [],
