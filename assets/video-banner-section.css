@@ -1,46 +1,277 @@
-/* video-banner-section.css */
-.video-banner-section {
+.banner {
+  display: flex;
   position: relative;
-  overflow: hidden;
-  height: 500px;
+  flex-direction: column;
+  z-index: auto;
+  isolation: isolate;
+  overflow: hidden; /* Ensure video stays within banner */
 }
 
-.video-banner-section video {
+/* Video Background Styling */
+.banner__media video {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  z-index: -1; /* Place video behind content */
 }
 
-.video-banner-section .video-banner-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.banner__box {
   text-align: center;
-  color: white;
-  z-index: 2;
+  z-index: 1; /* Place content above video */
 }
 
-.video-banner-section .banner-title {
-  font-size: 2.5em;
-  font-weight: bold;
+/* Gradient for continuity if needed */
+.banner__box.gradient {
+  transform: perspective(0);
 }
 
-.video-banner-section .banner-subtitle {
-  font-size: 1.5em;
-  margin-top: 10px;
+@media only screen and (max-width: 749px) {
+  .banner--content-align-mobile-right .banner__box {
+    text-align: right;
+  }
+  .banner--content-align-mobile-left .banner__box {
+    text-align: left;
+  }
 }
 
-.video-banner-section .banner-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #FF4500; /* Adjust to your brand color */
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+@media only screen and (min-width: 750px) {
+  .banner {
+    flex-direction: row;
+  }
+  .banner--content-align-right .banner__box {
+    text-align: right;
+  }
+  .banner--content-align-left .banner__box {
+    text-align: left;
+  }
+  .banner--content-align-left.banner--desktop-transparent .banner__box,
+  .banner--content-align-right.banner--desktop-transparent .banner__box,
+  .banner--medium.banner--desktop-transparent .banner__box {
+    max-width: 68rem;
+  }
 }
 
-.video-banner-section .banner-button:hover {
-  background-color: #3A0CA3; /* Adjust to your brand color */
+.banner__media.animate--zoom-in {
+  clip-path: inset(0px);
+}
+
+.banner__media.animate--zoom-in > img,
+.banner__media.animate--zoom-in > video {
+  position: fixed;
+  height: 100vh;
+}
+
+@media screen and (max-width: 749px) {
+  .banner--small .banner__media,
+  .banner--medium .banner__media,
+  .banner--large .banner__media {
+    height: auto;
+  }
+  .banner--small:not(.banner--mobile-bottom):not(.banner--adapt) .banner__content {
+    min-height: 28rem;
+  }
+  .banner--medium:not(.banner--mobile-bottom):not(.banner--adapt) .banner__content {
+    min-height: 34rem;
+  }
+  .banner--large:not(.banner--mobile-bottom):not(.banner--adapt) .banner__content {
+    min-height: 39rem;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .banner--small:not(.banner--adapt) {
+    min-height: 42rem;
+  }
+  .banner--medium:not(.banner--adapt) {
+    min-height: 56rem;
+  }
+  .banner--large:not(.banner--adapt) {
+    min-height: 72rem;
+  }
+  .banner__content.banner__content--top-left {
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .banner__content.banner__content--middle-center {
+    align-items: center;
+    justify-content: center;
+  }
+  .banner__content.banner__content--bottom-right {
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .banner--stacked .banner__media {
+    flex-direction: column;
+  }
+}
+
+.banner__media {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+@media screen and (min-width: 750px) {
+  .banner__media {
+    height: 100%;
+  }
+}
+
+.banner--adapt,
+.banner--adapt_image.banner--mobile-bottom .banner__media:not(.placeholder) {
+  height: auto;
+}
+
+@media screen and (max-width: 749px) {
+  .banner--mobile-bottom .banner__media,
+  .banner--stacked:not(.banner--mobile-bottom) .banner__media {
+    position: relative;
+  }
+}
+
+.banner__content {
+  padding: 0;
+  display: flex;
+  position: relative;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  z-index: 2; /* Content over video */
+}
+
+@media screen and (min-width: 750px) {
+  .banner__content {
+    padding: 5rem;
+  }
+  .banner__content--middle-center {
+    align-items: center;
+    justify-content: center;
+  }
+  .banner__content--bottom-right {
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+}
+
+.banner__box {
+  padding: 4rem 1.5rem;
+  position: relative;
+  height: fit-content;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  word-wrap: break-word;
+  z-index: 1;
+}
+
+.banner--mobile-bottom .banner__box {
+  padding: 4rem 3.5rem;
+}
+
+@media screen and (min-width: 750px) {
+  .banner__box {
+    padding: 4rem 3.5rem;
+  }
+  .banner--desktop-transparent .banner__box {
+    padding: 4rem 0;
+    background: transparent;
+    max-width: 89rem;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .banner--mobile-bottom::after,
+  .banner--mobile-bottom .banner__media::after {
+    display: none;
+  }
+}
+
+.banner::after,
+.banner__media::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  background: #000000;
+  opacity: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.banner__box > * + .banner__text {
+  margin-top: 1.5rem;
+}
+
+@media screen and (min-width: 750px) {
+  .banner__box > * + .banner__text {
+    margin-top: 2rem;
+  }
+}
+
+.banner__box > * + * {
+  margin-top: 1rem;
+}
+
+.banner__box > *:first-child {
+  margin-top: 0;
+}
+
+@media screen and (max-width: 749px) {
+  .banner--stacked .banner__box {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .banner__box {
+    width: auto;
+    max-width: 71rem;
+    min-width: 45rem;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .banner__box {
+    max-width: 90rem;
+  }
+}
+
+.banner__heading {
+  margin-bottom: 0;
+}
+
+.banner__box .banner__heading + * {
+  margin-top: 1rem;
+}
+
+.banner__buttons {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-width: 45rem;
+  word-break: break-word;
+}
+
+@media screen and (max-width: 749px) {
+  .banner--content-align-mobile-right .banner__buttons--multiple {
+    justify-content: flex-end;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .banner--content-align-right .banner__buttons--multiple {
+    justify-content: flex-end;
+  }
+}
+
+.banner__box > * + .banner__buttons {
+  margin-top: 2rem;
 }
