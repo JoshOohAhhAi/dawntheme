@@ -1,0 +1,48 @@
+.video-section {
+  position: relative;
+  padding: 20px;
+}
+
+.video-section__media {
+  position: relative;
+  padding-top: 56.25%; /* Default 16:9 aspect ratio */
+  background-color: #000;
+}
+
+@media (max-width: 600px) {
+  .video-section__media {
+    padding-top: 75%; /* 4:3 aspect ratio for smaller screens */
+  }
+}
+
+.video-section__poster {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.video-section__overlay-text {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  font-size: 1.5rem;
+}
+
+.video-section__poster-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+}
